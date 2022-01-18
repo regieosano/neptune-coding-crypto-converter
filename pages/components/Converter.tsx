@@ -1,8 +1,12 @@
 import type { NextPage } from 'next'
+import UICard from '../components/Card/UICard'
 
 const Converter: NextPage = () => {
    return (
-		 <h1>Hello!</h1>
+		 <div>
+	     <UICard />
+		 </div>
+	
 	 )
 }
 
