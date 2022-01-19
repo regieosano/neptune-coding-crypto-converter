@@ -1,0 +1,34 @@
+.dialog_center {
+	text-align: center;
+}
+
+.dialog {
+	padding: 1px 25px 25px 25px;
+	color: #FF0000;
+}
+
+.button_connect:hover {
+	color: #4267B2;
+}
+
+.button_cancel:hover {
+	color: #808080;
+}
+
+.button_connect {
+	padding: 5px 10px 5px 10px;
+	margin: 10px 10px 10px 10px;
+	color: #fff;
+	background-color: #4267B2;
+}
+
+.button_cancel {
+	padding: 5px 10px 5px 10px;
+	margin: 10px 10px 10px 10px;
+	color: #fff;
+	background-color: #808080;
+}
+
+.buttons {
+	text-align: center;
+}
