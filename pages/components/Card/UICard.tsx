@@ -10,6 +10,7 @@ import FormControl, { useFormControl } from '@mui/material/FormControl'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import FormHelperText from '@mui/material/FormHelperText'
 import Typography from '@mui/material/Typography'
+import StayPrimaryPortraitIcon from '@mui/icons-material/StayPrimaryPortrait';
 
 import stylesCard from '../../../styles/UICard.module.css'
 import { AutorenewRounded } from '@mui/icons-material'
@@ -55,7 +56,7 @@ const UICard: NextPage = () => {
 	  	/>
 		   <div className={stylesCard.top_title}>
 		     <Typography variant="h5" gutterBottom component="div">
-            NEPTUNE MUTUAL 
+            <StayPrimaryPortraitIcon className={stylesCard.neptune}/> NEPTUNE MUTUAL 
          </Typography>
 		   </div>
 		 
