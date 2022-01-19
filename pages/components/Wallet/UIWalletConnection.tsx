@@ -5,6 +5,7 @@ import ButtonGroup from '@mui/material/ButtonGroup'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import UIWalletDetails from '../Wallet/UIWalletDetails'
+import Spinner from '../Utility/Spinner'
 
 import Web3 from 'web3';
 
@@ -13,6 +14,7 @@ import stylesWallet from '../../../styles/UIWalletConnection.module.css'
 const UIWalletConnection: NextPage = ({isShowDialog, handleCheckWalletDetails}) => {
 
 	const [isShowWalletDetails, setIsShowWalletDetails] = React.useState(false)
+	const [isProcessDetails, setIsProcessDetails] = React.useState(false)
 	const [walletDetailsObj, setWalletDetailsObj] = React.useState({})
 
   let chainID, accountNo, balance, accountNoDisplay;
@@ -22,10 +24,10 @@ const UIWalletConnection: NextPage = ({isShowDialog, handleCheckWalletDetails}) 
 	}
 
   const handleWalletConnections = async () => {
-	
+	  setIsProcessDetails(true)
 		if (typeof window.ethereum !== 'undefined') {
-		
 			const web3 = new Web3(window.ethereum);
+
 			try {
 			  // Wallet connection
 				await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -42,20 +44,25 @@ const UIWalletConnection: NextPage = ({isShowDialog, handleCheckWalletDetails}) 
 
 				handleCheckWalletDetails()
 				handleIsShowWalletDetails()
-
+				setIsProcessDetails(false)
 				
 			} catch(e) {
 		    alert(e)
 			}
 		} else {
+			setIsProcessDetails(false)
 			alert("Do you have other Wallet Accounts? ")
 		}
 	
 	}
 
 	return (
-		<>
-		 <UIWalletDetails
+		<> 
+		{isProcessDetails && <div className={stylesWallet.spinner}>
+		  <Spinner />
+		</div>} 
+
+	  <UIWalletDetails
 		    isShowWalletDetails={isShowWalletDetails}
 		    walletDetailsObj={walletDetailsObj}
 				handleIsShowWalletDetails={handleIsShowWalletDetails}

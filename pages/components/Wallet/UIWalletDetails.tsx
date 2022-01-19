@@ -57,7 +57,7 @@ const UIWalletDetails: NextPage = (
          </TableContainer>
 				 <Button 
 				    className={stylesDetails.disconnect}
-						onClick={() => handleWalletDisconnect()}					       
+						onClick={() => handleWalletDisconnect()}		       
 				 >
             Disconnect
          </Button>
