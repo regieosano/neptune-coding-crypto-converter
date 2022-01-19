@@ -47,7 +47,6 @@ const UICard: NextPage = () => {
 		  setIsShowDialog(!isShowDialog)
 	 }
 
-
    return (
 		 <>
 		   <UIWalletConnection 

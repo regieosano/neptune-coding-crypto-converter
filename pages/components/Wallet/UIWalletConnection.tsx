@@ -53,13 +53,13 @@ const UIWalletConnection: NextPage = ({isShowDialog, handleCheckWalletDetails}) 
 			setIsProcessDetails(false)
 			alert("Do you have other Wallet Accounts? ")
 		}
-	
 	}
 
 	return (
 		<> 
-		{isProcessDetails && <div className={stylesWallet.spinner}>
-		  <Spinner />
+		{isProcessDetails &&
+	  <div className={stylesWallet.spinner}>
+			 <Spinner />
 		</div>} 
 
 	  <UIWalletDetails
@@ -91,9 +91,6 @@ const UIWalletConnection: NextPage = ({isShowDialog, handleCheckWalletDetails}) 
 				</div>
 	    </Dialog>
 		</>
-		
-	
-		
 	)
 }
 
