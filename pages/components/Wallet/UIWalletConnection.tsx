@@ -1,22 +1,25 @@
 import type { NextPage } from 'next'
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Avatar from '@mui/material/Avatar';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import PersonIcon from '@mui/icons-material/Person';
-import AddIcon from '@mui/icons-material/Add';
-import Typography from '@mui/material/Typography';
-import { blue } from '@mui/material/colors';
+import * as React from 'react'
+import Button from '@mui/material/Button'
+import ButtonGroup from '@mui/material/ButtonGroup'
+import Dialog from '@mui/material/Dialog'
+import DialogTitle from '@mui/material/DialogTitle'
+import UIWalletDetails from '../Wallet/UIWalletDetails'
+
 import Web3 from 'web3';
 
 import stylesWallet from '../../../styles/UIWalletConnection.module.css'
 
 const UIWalletConnection: NextPage = ({isShowDialog, handleCheckWalletDetails}) => {
 
-  let chainID, accountNo, balance;
+	const [isShowWalletDetails, setIsShowWalletDetails] = React.useState(false)
+	const [walletDetailsObj, setWalletDetailsObj] = React.useState({})
+
+  let chainID, accountNo, balance, accountNoDisplay;
+
+	const handleIsShowWalletDetails = () => {
+		setIsShowWalletDetails(!isShowWalletDetails)
+	}
 
   const handleWalletConnections = async () => {
 	
@@ -24,28 +27,40 @@ const UIWalletConnection: NextPage = ({isShowDialog, handleCheckWalletDetails}) 
 		
 			const web3 = new Web3(window.ethereum);
 			try {
-			
+			  // Wallet connection
 				await window.ethereum.request({ method: 'eth_requestAccounts' });
 				const accounts = await web3.eth.getAccounts();
+				accountNo = accounts[0]
+				accountNoDisplay = `${accountNo.substring(0, 5)}...${accountNo.slice(accountNo.length - 4)}` 
 				await web3.eth.getChainId((err, version) => {
 					if (err) console.log(err)
 					chainID = version
 				})
-				balance = await web3.eth.getBalance('0xaBE5BA3443023FD1E3fFDD6a5315EDCA0c7ce603');
-				handleCheckWalletDetails();
-				accountNo = accounts[0]
-				console.log(accountNo)
-				console.log(chainID)
-				console.log(balance)
+				balance = await web3.eth.getBalance(accountNo);
+	  	
+				setWalletDetailsObj({accountNoDisplay, chainID, balance})
+
+				handleCheckWalletDetails()
+				handleIsShowWalletDetails()
+
 				
 			} catch(e) {
 		    alert(e)
 			}
+		} else {
+			alert("Do you have other Wallet Accounts? ")
 		}
 	
 	}
 
 	return (
+		<>
+		 <UIWalletDetails
+		    isShowWalletDetails={isShowWalletDetails}
+		    walletDetailsObj={walletDetailsObj}
+				handleIsShowWalletDetails={handleIsShowWalletDetails}
+				handleCheckWalletDetails={handleCheckWalletDetails}
+		 />
 	   <Dialog open={isShowDialog} fullWidth>
        <DialogTitle>Wallet details</DialogTitle>
         <div className={stylesWallet.dialog}>
@@ -67,9 +82,9 @@ const UIWalletConnection: NextPage = ({isShowDialog, handleCheckWalletDetails}) 
             </Button>
 				  </ButtonGroup>
 				</div>
-			
-			
-     </Dialog>
+	    </Dialog>
+		</>
+		
 	
 		
 	)

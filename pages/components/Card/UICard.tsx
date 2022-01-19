@@ -51,9 +51,9 @@ const UICard: NextPage = () => {
    return (
 		 <>
 		   <UIWalletConnection 
-			 			 isShowDialog={isShowDialog}
-						handleCheckWalletDetails={handleCheckWalletDetails}	
-			/>
+			 		  isShowDialog={isShowDialog}
+						handleCheckWalletDetails={handleCheckWalletDetails}
+	  	/>
 		   <div className={stylesCard.top_title}>
 		     <Typography variant="h5" gutterBottom component="div">
             NEPTUNE MUTUAL 
