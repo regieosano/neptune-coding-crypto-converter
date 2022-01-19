@@ -1,7 +1,8 @@
 .top_title {
-	margin-bottom: 70px;
-	text-align: center;
-	color: #fff;
+	display: flex;
+  justify-content: center;
+  align-items: center;
+ 	margin-bottom: 70px;
 }
 
 .title {
@@ -22,6 +23,7 @@
 }
 
 .neptune {
+  font-weight: 600;
 	color:#008000; 
 }
 
