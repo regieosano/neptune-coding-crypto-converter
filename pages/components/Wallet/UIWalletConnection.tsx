@@ -47,7 +47,7 @@ const UIWalletConnection: NextPage = ({isShowDialog, handleCheckWalletDetails}) 
 				setIsProcessDetails(false)
 				
 			} catch(e) {
-		    alert(e)
+		    alert(`There is an error - ${e}`)
 			}
 		} else {
 			setIsProcessDetails(false)
@@ -57,22 +57,22 @@ const UIWalletConnection: NextPage = ({isShowDialog, handleCheckWalletDetails}) 
 
 	return (
 		<> 
-		{isProcessDetails &&
-	  <div className={stylesWallet.spinner}>
-			 <Spinner />
-		</div>} 
+		  {isProcessDetails &&
+	    <div className={stylesWallet.spinner}>
+		  	 <Spinner />
+		  </div>} 
 
-	  <UIWalletDetails
+	    <UIWalletDetails
 		    isShowWalletDetails={isShowWalletDetails}
 		    walletDetailsObj={walletDetailsObj}
 				handleIsShowWalletDetails={handleIsShowWalletDetails}
 				handleCheckWalletDetails={handleCheckWalletDetails}
-		 />
-	   <Dialog open={isShowDialog} fullWidth>
-       <DialogTitle>Wallet details</DialogTitle>
-        <div className={stylesWallet.dialog}>
-					Wallet not connected. Please click the "Connect Now" button below.
-				</div>
+		  />
+	    <Dialog open={isShowDialog} fullWidth>
+        <DialogTitle>Wallet details</DialogTitle>
+         <div className={stylesWallet.dialog}>
+		  			Wallet not connected. Please click the "Connect Now" button below.
+		  	</div>
 				<div className={stylesWallet.buttons}>
 				  <ButtonGroup >
 				    <Button variant="primary"
@@ -88,7 +88,7 @@ const UIWalletConnection: NextPage = ({isShowDialog, handleCheckWalletDetails}) 
               Cancel
             </Button>
 				  </ButtonGroup>
-				</div>
+			  </div>
 	    </Dialog>
 		</>
 	)
